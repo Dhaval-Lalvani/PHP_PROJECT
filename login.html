@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mood Based Music Playlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('back.jpg') no-repeat center center fixed; /* Retaining your JPG background */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: rgba(50, 50, 70, 0.9); /* Dark shade of black with a hint of purple */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 320px; /* Fixed width */
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto 20px; /* Center logo */
+            width: 100px; /* Adjust logo size */
+        }
+
+        h2 {
+            text-align: center;
+            color: #c39bd3; /* Light purple for the heading */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #e0e0e0; /* Light text for labels */
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #7d3c98; /* Border color matching the purple shade */
+            border-radius: 4px;
+            background-color: #2c2c2e; /* Dark background for input */
+            color: #ffffff; /* White text inside input fields */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #7d3c98; /* Dark purple button color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #6c3483; /* Slightly darker purple on hover */
+        }
+
+        p {
+            text-align: center;
+            color: #e0e0e0; /* Light text for the paragraph */
+        }
+
+        a {
+            color: #c39bd3; /* Light purple for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.jpg" alt="Music Logo" class="logo"> <!-- Your logo remains -->
+        <h2>Login to Your Account</h2>
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="register.php">Register here</a></p>
+        </form>
+    </div>
+</body>
+</html>

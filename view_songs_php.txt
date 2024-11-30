@@ -1,0 +1,66 @@
+<?php
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html");
+    exit();
+}
+
+// Database connection
+$servername = "localhost";
+$db_username = "root";
+$db_password = "";
+$dbname = "mood_music_db";
+
+$conn = new mysqli($servername, $db_username, $db_password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if playlist ID is passed in URL
+if (isset($_GET['playlist_id'])) {
+    $playlist_id = $conn->real_escape_string($_GET['playlist_id']);
+} else {
+    echo "No playlist selected.";
+    exit();
+}
+
+// Fetch songs from the selected playlist
+$songs = [];
+$sql = "SELECT * FROM songs WHERE playlist_id = '$playlist_id'";
+$result = $conn->query($sql);
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $songs[] = $row;
+    }
+} else {
+    echo "Error fetching songs: " . $conn->error;
+}
+
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Songs</title>
+</head>
+<body>
+    <h2>Songs in Playlist</h2>
+
+    <?php foreach ($songs as $song): ?>
+        <div>
+            <h3><?php echo htmlspecialchars($song['song_name']); ?></h3>
+            <p><a href="<?php echo htmlspecialchars($song['spotify_link']); ?>" target="_blank">Listen on Spotify</a></p>
+        </div>
+        <br><br>
+    <?php endforeach; ?>
+
+    <a href="playlist.php">Back to Playlists</a>
+</body>
+</html>
